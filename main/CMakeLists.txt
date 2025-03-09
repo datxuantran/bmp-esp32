@@ -1,17 +1,14 @@
 set(SOURCES
     "main.c"
-    "usb.c"
-    "usb-uart.c"
+    
     "nvs.c"
     "nvs-config.c"
     "led.c"
     "cli-uart.c"
-    "i2c.c"
+   
     "delay.c"
     "network.c"
-    "network-http.c"
     "network-gdb.c"
-    "network-uart.c"
     "cli-uart.c"
     "cli/cli.c"
     "cli/cli-commands.c"
@@ -20,8 +17,8 @@ set(SOURCES
     "cli/cli-commands-config.c"
     "cli/cli-commands-device-info.c"
     "cli/cli-args.c"
-    "soft-uart-log.c"
-    "factory-reset-service.c"
+   
+   
 )
 
 set(INCLUDES
@@ -78,4 +75,3 @@ message(STATUS "FW branch num: ${FW_GIT_BRANCH_NUM}")
 message(STATUS "FW version: ${FW_GIT_VERSION}")
 
 set_property(SOURCE "cli/cli-commands-device-info.c" APPEND PROPERTY COMPILE_OPTIONS ${INFO_FLAGS})
-set_property(SOURCE "network-http.c" APPEND PROPERTY COMPILE_OPTIONS ${INFO_FLAGS})
