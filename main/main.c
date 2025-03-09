@@ -42,5 +42,6 @@ void app_main(void) {
     cli_uart_init();
 
     xTaskCreate(&gdb_application_thread, "gdb_thread", 4096, NULL, 5, NULL);
+    led_set_blue(0);
     ESP_LOGI(TAG, "end");
 }
