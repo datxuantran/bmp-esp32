@@ -35,7 +35,7 @@ uint32_t network_get_ip(void) {
     if(wifi_mode == WiFiModeSTA) {
         esp_netif_get_ip_info(esp_netif, &ip_info);
     } else {
-        tcpip_adapter_get_ip_info(esp_netif, &ip_info);
+        esp_netif_get_ip_info(esp_netif, &ip_info);
     }
 
     return &ip_info.ip;
