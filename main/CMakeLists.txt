@@ -4,21 +4,10 @@ set(SOURCES
     "nvs.c"
     "nvs-config.c"
     "led.c"
-    "cli-uart.c"
    
     "delay.c"
     "network.c"
     "network-gdb.c"
-    "cli-uart.c"
-    "cli/cli.c"
-    "cli/cli-commands.c"
-    "cli/cli-commands-gpio.c"
-    "cli/cli-commands-wifi.c"
-    "cli/cli-commands-config.c"
-    "cli/cli-commands-device-info.c"
-    "cli/cli-args.c"
-   
-   
 )
 
 set(INCLUDES
