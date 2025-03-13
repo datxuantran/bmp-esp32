@@ -6,7 +6,6 @@
 #include <freertos/event_groups.h>
 #include <string.h>
 #include <m-string.h>
-#include <mdns.h>
 #include <lwip/apps/netbiosns.h>
 
 #define TAG "network"
@@ -14,9 +13,6 @@
 #define ESP_WIFI_SSID "blackmagic"
 #define ESP_WIFI_PASS "iamwitcher"
 #define ESP_WIFI_CHANNEL 1
-
-#define MDNS_HOST_NAME "blackmagic"
-#define MDNS_INSTANCE "blackmagic web server"
 
 #ifndef min
 #define min(a, b)               \
@@ -151,36 +147,6 @@ static bool network_connect_ap(mstring_t* ap_ssid, mstring_t* ap_pass) {
     return result;
 }
 
-void network_hostnames_init(void) {
-    mstring_t* hostname = mstring_alloc();
-
-    ESP_LOGI(TAG, "init mdns");
-    mdns_init();
-
-    nvs_config_get_hostname(hostname);
-    mdns_hostname_set(mstring_get_cstr(hostname));
-    mdns_instance_name_set(MDNS_INSTANCE);
-
-    mdns_txt_item_t serviceTxtData[] = {{"board", "esp32"}, {"path", "/"}};
-
-    ESP_ERROR_CHECK(mdns_service_add(
-        "ESP32-WebServer",
-        "_http",
-        "_tcp",
-        80,
-        serviceTxtData,
-        sizeof(serviceTxtData) / sizeof(serviceTxtData[0])));
-
-    ESP_LOGI(TAG, "init MDNS done");
-
-    ESP_LOGI(TAG, "init netbios");
-    netbiosns_init();
-    netbiosns_set_name(mstring_get_cstr(hostname));
-    ESP_LOGI(TAG, "init netbios done");
-
-    mstring_free(hostname);
-}
-
 WiFiMode network_init(void) {
     mstring_t* ssid = mstring_alloc();
     mstring_t* pass = mstring_alloc();
@@ -189,8 +155,6 @@ WiFiMode network_init(void) {
     ESP_ERROR_CHECK(esp_netif_init());
 
     nvs_config_get_wifi_mode(&wifi_mode);
-
-    network_hostnames_init();
 
     switch(wifi_mode) {
     case WiFiModeAP:
