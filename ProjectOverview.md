@@ -18,8 +18,7 @@
 
 ### Progress
 
-- [x] Same nvs and nvs-config as esp32s2
-- [ ] Porting network.c from esp32s2 to esp32
+- [x] Upgrade network.c esp-idf_v4 to esp-idf_v5.0.8
 - [ ] Porting network-gdb.c from esp32s2 to esp32
 
 ## Cli-UART

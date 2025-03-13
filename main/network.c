@@ -30,14 +30,15 @@
 static WiFiMode wifi_mode = WiFiModeSTA;
 
 uint32_t network_get_ip(void) {
-    tcpip_adapter_ip_info_t ip_info;
+    esp_netif_ip_info_t ip_info;
+    esp_netif_t* esp_netif = NULL;
     if(wifi_mode == WiFiModeSTA) {
-        tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info);
+        esp_netif_get_ip_info(esp_netif, &ip_info);
     } else {
-        tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_AP, &ip_info);
+        tcpip_adapter_get_ip_info(esp_netif, &ip_info);
     }
 
-    return ip_info.ip.addr;
+    return &ip_info.ip;
 }
 
 static void
@@ -135,7 +136,7 @@ static bool network_connect_ap(mstring_t* ap_ssid, mstring_t* ap_pass) {
         min(sizeof(wifi_config.sta.password), mstring_size(ap_pass)));
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
-    ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config));
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
     ESP_ERROR_CHECK(esp_wifi_start());
 
     ESP_LOGI(
