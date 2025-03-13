@@ -72,6 +72,12 @@ set(BM_INCLUDE
     ${PLATFORM_DIR}
 )
 
+# https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html
+# driver to control GPIO pins
+set(BM_REQUIRES
+    driver
+)
+
 # Get the current working branch
 execute_process(
     COMMAND git describe --always --dirty --tags
