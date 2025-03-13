@@ -38,7 +38,7 @@ uint32_t network_get_ip(void) {
         esp_netif_get_ip_info(esp_netif, &ip_info);
     }
 
-    return &ip_info.ip;
+    return ip_info.ip.addr;
 }
 
 static void
