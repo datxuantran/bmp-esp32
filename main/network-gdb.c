@@ -46,6 +46,11 @@ void network_gdb_send(uint8_t* buffer, size_t size) {
     }
 };
 
+/** 
+ * Receives data from the network socket and forwards it to GDB.  
+ * The received data consists of GDB commands (e.g., 'finish', 'next')  
+ * formatted as GDB packets.
+ */
 static void receive_and_send_to_gdb(void) {
     size_t rx_size = SIZE_MAX;
     size_t gdb_packet_size = gdb_glue_get_packet_size();
@@ -55,6 +60,7 @@ static void receive_and_send_to_gdb(void) {
         if(gdb_glue_can_receive()) {
             size_t max_len = gdb_glue_get_free_size();
             if(max_len > gdb_packet_size) max_len = gdb_packet_size;
+            // receive data from network socket
             rx_size = recv(network_gdb.socket_id, buffer_rx, max_len, 0);
             if(rx_size > 0) {
                 gdb_glue_receive(buffer_rx, rx_size);
@@ -67,6 +73,10 @@ static void receive_and_send_to_gdb(void) {
     free(buffer_rx);
 }
 
+/**
+ * Initializes a network socket and listens for incoming connections, 
+ * receiving data from the network socket and forwarding it to GDB
+ */
 static void network_gdb_server_task(void* pvParameters) {
     char addr_str[128];
     int addr_family = (int)pvParameters;

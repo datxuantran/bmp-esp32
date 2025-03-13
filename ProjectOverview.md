@@ -1,5 +1,7 @@
 # Overview
 
+## Network and gdb
+
 - BMP, `gdb_main` loop as a thread
 - `network_gdb_server_task` as a thread
   - init network socket
@@ -14,6 +16,8 @@
     - `unsigned char gdb_if_getchar_to(int timeout)`, client to gdb-server, rx
     - `unsigned char gdb_if_getchar(void) `, client to gdb-server, rx
     - `void gdb_if_putchar(unsigned char c, int flush)`, target to gdb-server, tx
+
+## Cli and gdb
 
 # Progress
 

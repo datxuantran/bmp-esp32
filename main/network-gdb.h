@@ -22,7 +22,7 @@ void network_gdb_server_init(void);
 bool network_gdb_connected(void);
 
 /**
- * Send data
+ * Send data from GDB server
  * @param buffer data
  * @param size data size
  */

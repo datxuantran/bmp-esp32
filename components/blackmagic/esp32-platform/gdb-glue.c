@@ -13,7 +13,7 @@
 typedef struct {
     StreamBufferHandle_t rx_stream;
     bool rx_stream_full;
-    uint8_t tx_buffer[GDB_TX_BUFFER_SIZE];
+    uint8_t tx_buffer[GDB_TX_BUFFER_SIZE]; // raw bytes, used for both text-based and binary packets
     size_t tx_buffer_index;
 } GDBGlue;
 
