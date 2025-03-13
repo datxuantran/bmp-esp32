@@ -14,8 +14,18 @@ set(INCLUDES
     "."
 )
 
+set(REQUIRES
+    driver
+    mlib
+    blackmagic
+    esp_wifi
+    esp_netif
+    nvs_flash
+) 
+
 idf_component_register(SRCS ${SOURCES}
-    INCLUDE_DIRS ${INCLUDES})
+    INCLUDE_DIRS ${INCLUDES}
+    REQUIRES ${REQUIRES})
 
 # Commit
 execute_process(
