@@ -21,6 +21,8 @@ set(REQUIRES
     esp_wifi
     esp_netif
     nvs_flash
+    esp_hw_support
+    spi_flash
 ) 
 
 idf_component_register(SRCS ${SOURCES}
