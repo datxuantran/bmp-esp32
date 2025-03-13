@@ -7,7 +7,6 @@
 #include "nvs.h"
 #include "gdb_main.h"
 #include "led.h"
-#include "cli-uart.h"
 #include "network.h"
 #include "network-gdb.h"
 
