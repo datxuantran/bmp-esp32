@@ -119,38 +119,6 @@ After the ESP32 reboots, open your computer’s Wi‑Fi settings. A network name
 
 ### 6.3 Using STM32CubeIDE
 
-List of interactive tutorial on configure the gdb hardware debugging and debug session in stm32cubeIDE
-[Debug session in STM32CubeIDE](https://drive.google.com/file/d/1lYrRjPGaxeAm9QpiFlFEkb3eyjNCJ3ur/view?usp=drive_link)
-[GDB Hardware Debugging_Main_Configuration](https://drive.google.com/file/d/1KYCKNr1jPEVpw2qq8PpECrbc_k2X_3TE/view?usp=sharing)
-[GDB Hardware Debugging_Debugger_Configuration](https://drive.google.com/file/d/1bes3LA_oOc4WGDeuwI9wwz-3gZbU3R1X/view?usp=drive_link)
-[GDB Hardware Debugging_Startup_Configuration](https://drive.google.com/file/d/1wdwB2Liqvi05xLNEKN0Tlf1TVIoUkDpR/view?usp=drive_link)
-
-Text tutorial on how to configure the GDB hardware debugging
-
-1. Create or import your STM32 project in STM32CubeIDE.
-2. In **Run → Debug Configurations**, add a new **GDB Hardware Debugging** configuration.
-3. Set the **Debugger** to:
-   - GDB command `arm-none-eabi-gdb`
-   - Remote Target/Debug Server `Black Magic Probe`
-   - Remote Target/Protocol chooses `extended-remote`
-   - Remote Target/Connection chooses `192.168.4.1:2345`
-4. Set the **Startup**:
-
-- Initialization Commands
-
-```
-set logging on
-set mem inaccessible-by-default off
-monitor swdp_scan
-attach 1
-```
-
-Refer to [Black Magic Probe STM32CubeIDE](https://black-magic.org/usage/stm32cubeide.html)
-
-5. Apply and click **Debug**. STM32CubeIDE will connect over Wi‑Fi to the Black Magic probe.
-
-### 6.3 Using STM32CubeIDE
-
 Below are interactive tutorials for configuring GDB hardware debugging and starting a debug session in STM32CubeIDE:  
 [Debug session in STM32CubeIDE](https://drive.google.com/file/d/1lYrRjPGaxeAm9QpiFlFEkb3eyjNCJ3ur/view?usp=drive_link)  
 [GDB Hardware Debugging_Main_Configuration](https://drive.google.com/file/d/1KYCKNr1jPEVpw2qq8PpECrbc_k2X_3TE/view?usp=sharing)  
