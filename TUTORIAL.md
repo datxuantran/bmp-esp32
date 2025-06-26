@@ -108,7 +108,7 @@ After the ESP32 reboots, open your computer’s Wi‑Fi settings. A network name
 2. In the GDB console, connect to the ESP32 Black Magic probe:
 
    ```gdb
-   target extended-remote tcp:192.168.4.1:2345
+   target extended-remote 192.168.4.1:2345
    monitor swdp_scan
    att 1
    ```
