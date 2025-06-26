@@ -19,7 +19,11 @@
 ### Progress
 
 - [x] Upgrade network.c esp-idf_v4 to esp-idf_v5.0.8
-- [ ] Porting network-gdb.c from esp32s2 to esp32
+- [x] Porting network-gdb.c from esp32s2 to esp32
+- [ ] Porting platform from esp32s2 to esp32
+  - [ ] `Exception SWD parity error, SW-DP scan fail`
+  - Where can i get information on swd default frequency, swd total cycle and swd cycle per clock
+- [ ] Deactivate `uint32_t platform_max_frequency_get(void)` and `void platform_max_frequency_set(uint32_t freq)` to see whether it is related to the SWD parity error
 
 ## Cli-UART
 
