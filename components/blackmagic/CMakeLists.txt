@@ -77,6 +77,7 @@ set(BM_INCLUDE
 set(BM_REQUIRES
     driver
     esp_timer
+    esp_hw_support
 )
 
 # Get the current working branch

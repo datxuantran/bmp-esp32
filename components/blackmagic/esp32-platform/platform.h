@@ -71,3 +71,8 @@ void led_set_blue(uint8_t value);
     do {                             \
         platform_swdio_mode_drive(); \
     } while(0)
+
+#define SWD_CYCLES_PER_CLOCK 19L
+#define SWD_TOTAL_CYCLES 190L
+#define SWD_DEFAULT_FREQUENCY 1000000L
+// #define SWD_DEFAULT_FREQUENCY 500000L

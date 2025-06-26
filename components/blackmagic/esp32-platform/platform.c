@@ -4,11 +4,13 @@
 #include "general.h"
 #include <esp_log.h>
 #include "esp_timer.h"
+#include <esp_private/esp_clk.h>
 #include <driver/gpio.h>
 #include <rom/ets_sys.h>
 
 #include <hal/gpio_ll.h>
 #include <esp_rom_gpio.h>
+#include "platform.h"
 
 uint32_t swd_delay_cnt = 0;
 // static const char* TAG = "gdb-platform";
@@ -85,7 +87,8 @@ void platform_init() {
     gpio_config(&io_conf);
 
     // set max frequency of the platform
-    //platform_max_frequency_set(SWD_DEFAULT_FREQUENCY);
+    platform_max_frequency_set(SWD_DEFAULT_FREQUENCY);
+    // platform_max_frequency_set(UINT32_MAX);
 }
 
 // set reset target pin level
@@ -131,11 +134,24 @@ bool platform_timeout_is_expired(const platform_timeout_s* t) {
 
 // set interface freq
 void platform_max_frequency_set(uint32_t freq) {
+    uint32_t cpu_freq = esp_clk_cpu_freq();
+
+    if(freq < 50000) return;
+
+    int32_t cnt =
+
+        (cpu_freq - SWD_TOTAL_CYCLES * (int32_t)freq) / (SWD_CYCLES_PER_CLOCK * (int32_t)freq);
+
+    if(cnt < 0) cnt = 0;
+
+    swd_delay_cnt = cnt;
+    // swd_delay_cnt = -4;
 }
 
 // get interface freq
 uint32_t platform_max_frequency_get(void) {
-    return 0;
+    return esp_clk_cpu_freq() / (swd_delay_cnt * SWD_CYCLES_PER_CLOCK + SWD_TOTAL_CYCLES);
+    // return 0;
 }
 
 void platform_nrst_set_val(bool assert) {
